@@ -45,7 +45,7 @@ class ProTips extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          width > 570
+          width > 615
               ? const Row(
                   children: [
                     Column(

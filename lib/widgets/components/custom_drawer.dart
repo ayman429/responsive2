@@ -1,19 +1,62 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CustomDrewer extends StatefulWidget {
-  const CustomDrewer(
-      {super.key, required this.responsive, required this.tabletLayout});
+class CustomDrawer extends StatefulWidget {
+  const CustomDrawer(
+      {super.key,
+      required this.responsive,
+      required this.tabletLayout,
+      required this.onItemSelected,
+      required this.index});
   final bool responsive;
   final bool tabletLayout;
+  final int index;
+  final Function(int) onItemSelected;
 
   @override
-  State<CustomDrewer> createState() => _CustomDrewerState();
+  State<CustomDrawer> createState() => _CustomDrewerState();
 }
 
-class _CustomDrewerState extends State<CustomDrewer> {
+class _CustomDrewerState extends State<CustomDrawer> {
   int isActive = 1;
   int expand = 0;
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      if (widget.tabletLayout) {
+        if (widget.index >= 3 && widget.index <= 5) {
+          isActive = 2;
+        } else if (widget.index == 7 || widget.index == 8) {
+          isActive = 6;
+        } else if (widget.index >= 11 && widget.index <= 14) {
+          isActive = 10;
+        } else {
+          isActive = widget.index;
+        }
+        // if (widget.index == 2 || widget.index == 6 || widget.index == 10) {
+        //   isActive = widget.index;
+        // }
+      } else {
+        isActive = widget.index;
+        if (widget.index >= 3 && widget.index <= 5) {
+          expand = 2;
+        } else if (widget.index == 7 || widget.index == 8) {
+          expand = 6;
+        } else if (widget.index >= 11 && widget.index <= 14) {
+          expand = 10;
+        } else {
+          // expand = widget.index - 1;
+        }
+      }
+      log("isActive = $isActive");
+      log("expand = $expand");
+      log("widget.index = ${widget.index}");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -66,7 +109,7 @@ class _CustomDrewerState extends State<CustomDrewer> {
           SizedBox(
             height: widget.responsive
                 ? 400
-                : MediaQuery.of(context).orientation == Orientation.landscape
+                : MediaQuery.of(context).size.height < 500
                     ? 200
                     : 400,
             child: SingleChildScrollView(
@@ -83,6 +126,7 @@ class _CustomDrewerState extends State<CustomDrewer> {
                         isActive = 1;
                         expand = 0;
                       });
+                      widget.onItemSelected(1);
                     },
                   ),
                   customDrewerButton(
@@ -98,6 +142,7 @@ class _CustomDrewerState extends State<CustomDrewer> {
                           isActive = 2;
                           expand = 0;
                         });
+                        widget.onItemSelected(3);
                       } else {
                         if (expand == 2) {
                           setState(() {
@@ -105,10 +150,8 @@ class _CustomDrewerState extends State<CustomDrewer> {
                           });
                         } else {
                           setState(() {
-                            setState(() {
-                              isActive = isActive;
-                              expand = 2;
-                            });
+                            isActive = isActive;
+                            expand = 2;
                           });
                         }
                       }
@@ -128,6 +171,7 @@ class _CustomDrewerState extends State<CustomDrewer> {
                                     setState(() {
                                       isActive = 3;
                                     });
+                                    widget.onItemSelected(3);
                                   },
                                 ),
                                 customDrewerButton(
@@ -139,6 +183,7 @@ class _CustomDrewerState extends State<CustomDrewer> {
                                     setState(() {
                                       isActive = 4;
                                     });
+                                    widget.onItemSelected(4);
                                   },
                                 ),
                                 customDrewerButton(
@@ -150,6 +195,7 @@ class _CustomDrewerState extends State<CustomDrewer> {
                                     setState(() {
                                       isActive = 5;
                                     });
+                                    widget.onItemSelected(5);
                                   },
                                 ),
                               ],
@@ -168,6 +214,7 @@ class _CustomDrewerState extends State<CustomDrewer> {
                           isActive = 6;
                           expand = 0;
                         });
+                        widget.onItemSelected(7);
                       } else {
                         if (expand == 6) {
                           setState(() {
@@ -175,10 +222,8 @@ class _CustomDrewerState extends State<CustomDrewer> {
                           });
                         } else {
                           setState(() {
-                            setState(() {
-                              isActive = isActive;
-                              expand = 6;
-                            });
+                            isActive = isActive;
+                            expand = 6;
                           });
                         }
                       }
@@ -198,6 +243,7 @@ class _CustomDrewerState extends State<CustomDrewer> {
                                     setState(() {
                                       isActive = 7;
                                     });
+                                    widget.onItemSelected(7);
                                   },
                                 ),
                                 customDrewerButton(
@@ -209,6 +255,7 @@ class _CustomDrewerState extends State<CustomDrewer> {
                                     setState(() {
                                       isActive = 8;
                                     });
+                                    widget.onItemSelected(8);
                                   },
                                 ),
                               ],
@@ -225,6 +272,7 @@ class _CustomDrewerState extends State<CustomDrewer> {
                         isActive = 9;
                         expand = 0;
                       });
+                      widget.onItemSelected(9);
                     },
                   ),
                   customDrewerButton(
@@ -241,6 +289,7 @@ class _CustomDrewerState extends State<CustomDrewer> {
                           isActive = 10;
                           expand = 0;
                         });
+                        widget.onItemSelected(11);
                       } else {
                         if (expand == 10) {
                           setState(() {
@@ -248,10 +297,8 @@ class _CustomDrewerState extends State<CustomDrewer> {
                           });
                         } else {
                           setState(() {
-                            setState(() {
-                              isActive = isActive;
-                              expand = 10;
-                            });
+                            isActive = isActive;
+                            expand = 10;
                           });
                         }
                       }
@@ -271,6 +318,7 @@ class _CustomDrewerState extends State<CustomDrewer> {
                                     setState(() {
                                       isActive = 11;
                                     });
+                                    widget.onItemSelected(11);
                                   },
                                 ),
                                 customDrewerButton(
@@ -282,6 +330,7 @@ class _CustomDrewerState extends State<CustomDrewer> {
                                     setState(() {
                                       isActive = 12;
                                     });
+                                    widget.onItemSelected(12);
                                   },
                                 ),
                                 customDrewerButton(
@@ -293,6 +342,7 @@ class _CustomDrewerState extends State<CustomDrewer> {
                                     setState(() {
                                       isActive = 13;
                                     });
+                                    widget.onItemSelected(13);
                                   },
                                 ),
                                 customDrewerButton(
@@ -304,6 +354,7 @@ class _CustomDrewerState extends State<CustomDrewer> {
                                     setState(() {
                                       isActive = 14;
                                     });
+                                    widget.onItemSelected(14);
                                   },
                                 ),
                               ],
@@ -320,6 +371,7 @@ class _CustomDrewerState extends State<CustomDrewer> {
                         isActive = 15;
                         expand = 0;
                       });
+                      widget.onItemSelected(15);
                     },
                   ),
                 ],

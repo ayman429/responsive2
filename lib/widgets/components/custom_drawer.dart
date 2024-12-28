@@ -1,6 +1,8 @@
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -59,59 +61,70 @@ class _CustomDrewerState extends State<CustomDrawer> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+
     return Drawer(
       backgroundColor: const Color(0xFFFCFCFC),
       surfaceTintColor: const Color(0xFFFCFCFC),
       elevation: 0,
       shape: widget.responsive ? const BeveledRectangleBorder() : null,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            children: [
-              widget.responsive
-                  ? const SizedBox()
-                  : Padding(
-                      padding:
-                          const EdgeInsetsDirectional.only(start: 15, top: 20),
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.close,
-                          color: Color(0xFF6F767E),
+          SizedBox(
+            height: height > 300 ? null : height * 0.22,
+            child: Row(
+              mainAxisAlignment: widget.tabletLayout
+                  ? MainAxisAlignment.center
+                  : MainAxisAlignment.start,
+              children: [
+                widget.responsive
+                    ? const SizedBox(width: 10)
+                    : Padding(
+                        padding: const EdgeInsetsDirectional.only(
+                            start: 15, top: 20),
+                        child: FittedBox(
+                          fit: BoxFit.contain,
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.close,
+                              color: Color(0xFF6F767E),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
                         ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
                       ),
-                    ),
-              widget.responsive
-                  ? const SizedBox(
-                      width: 10,
-                    )
-                  : const Spacer(flex: 3),
-              Flexible(
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.only(top: 20, end: 10),
-                    child: Image.asset(
-                      'assets/images/img1.png',
-                      width: 80,
-                      height: 70,
+                widget.responsive
+                    ? const SizedBox(
+                        // width: 30,
+                        )
+                    : const Spacer(flex: 3),
+                Flexible(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.only(top: 20, end: 10),
+                      child: Image.asset(
+                        'assets/images/img1.png',
+                        width: 80,
+                        height: 70,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-          const SizedBox(height: 15),
-          const Divider(color: Color(0xFFEFEFEF), thickness: 1),
-          const SizedBox(height: 15),
-          SizedBox(
-            height: widget.responsive
-                ? 400
-                : MediaQuery.of(context).size.height < 500
-                    ? 200
-                    : 400,
+          // const SizedBox(height: 15),
+          const Expanded(
+              child: Divider(color: Color(0xFFEFEFEF), thickness: 1)),
+          // const SizedBox(height: 15),
+
+          Expanded(
+            flex: 15,
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -377,7 +390,112 @@ class _CustomDrewerState extends State<CustomDrawer> {
                 ],
               ),
             ),
-          )
+          ),
+          // const SizedBox(height: 20),
+          const Expanded(
+              child: Divider(color: Color(0xFFEFEFEF), thickness: 1)),
+          // const SizedBox(height: 10),
+          widget.tabletLayout
+              ? const Flexible(
+                  flex: 2,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                FontAwesomeIcons.circleQuestion,
+                                color: Color(0xFF6F767E),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              : Flexible(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Row(
+                            children: [
+                              const Icon(
+                                FontAwesomeIcons.circleQuestion,
+                                color: Color(0xFF6F767E),
+                              ),
+                              const SizedBox(width: 10),
+                              const Text(
+                                "Help & getting started",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w300, fontSize: 13),
+                              ),
+                              const Spacer(),
+                              Container(
+                                height: 28,
+                                width: 25,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFCABDFF),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: const Center(
+                                  child: Text(
+                                    "8",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        // Expanded(
+                        //   child: Row(
+                        //     children: [
+                        //       const Icon(Icons.question_mark_outlined),
+                        //       const SizedBox(width: 10),
+                        //       const Text(
+                        //         "Help & getting started",
+                        //         style: TextStyle(
+                        //             fontWeight: FontWeight.w300, fontSize: 13),
+                        //       ),
+                        //       const Spacer(),
+                        //       Container(
+                        //         height: 28,
+                        //         width: 25,
+                        //         decoration: BoxDecoration(
+                        //           color: const Color(0xFFCABDFF),
+                        //           borderRadius: BorderRadius.circular(8),
+                        //         ),
+                        //         child: const Center(
+                        //           child: Text(
+                        //             "8",
+                        //             style: TextStyle(fontWeight: FontWeight.bold),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+                      ],
+                    ),
+                  ),
+                ),
+
+          // const SizedBox(height: 80),
+          // const Spacer(),
+          // widget.tabletLayout
+          //     ? height > 600
+          //         ? const SizedBox()
+          //         : SizedBox(height: height / 120)
+          //     : const SizedBox(),
+          const Expanded(child: SizedBox(height: 10)),
         ],
       ),
     );

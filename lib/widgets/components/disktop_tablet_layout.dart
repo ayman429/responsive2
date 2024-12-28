@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../dashboard_disk_tab.dart';
 import 'custom_drawer.dart';
@@ -64,11 +65,18 @@ class _DisktopTabletLayoutState extends State<DisktopTabletLayout> {
               const SliverAppBar(
                 pinned: true,
                 // expandedHeight: 80.0,
-                toolbarHeight: 80,
+                toolbarHeight: 90,
                 backgroundColor: Colors.white,
                 surfaceTintColor: Colors.white,
                 elevation: 0,
-                actions: [SignInButton(), SignUpButton()],
+                title: CustomTextField(),
+                actions: [
+                  ChatButton(),
+                  NotificationButton(),
+                  UserImageButton(),
+                  SignInButton(),
+                  SignUpButton()
+                ],
               ),
               SliverList(
                 delegate: SliverChildListDelegate(
@@ -128,6 +136,128 @@ class _DisktopTabletLayoutState extends State<DisktopTabletLayout> {
             ]),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CustomTextField extends StatelessWidget {
+  const CustomTextField({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            // height: 45,
+            decoration: const BoxDecoration(
+              color: Color(0xFFF4F4F4),
+              borderRadius: BorderRadius.all(
+                Radius.circular(12),
+              ),
+            ),
+            child: const TextField(
+              decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 2,
+                    color: Colors.blue,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                ),
+                prefixIcon: Padding(
+                  padding: EdgeInsetsDirectional.only(start: 20, end: 10),
+                  child: Icon(Icons.search, color: Color(0xFF9A9FA5)),
+                ),
+                hintText: 'Search',
+                hintStyle: TextStyle(
+                  color: Color(0xFF9A9FA5),
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ),
+        ),
+        const Spacer(),
+      ],
+    );
+  }
+}
+
+class ChatButton extends StatelessWidget {
+  const ChatButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+        onPressed: () {},
+        icon: Stack(
+          alignment: Alignment.topRight,
+          children: [
+            const Icon(Icons.chat_outlined),
+            Container(
+              width: 8,
+              height: 8,
+              decoration: const BoxDecoration(
+                color: Colors.red,
+                shape: BoxShape.circle,
+              ),
+            ),
+          ],
+        ),
+        color: const Color(0xFF6F767E));
+  }
+}
+
+class NotificationButton extends StatelessWidget {
+  const NotificationButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.notifications_none_outlined),
+          color: const Color(0xFF6F767E)),
+    );
+  }
+}
+
+class UserImageButton extends StatelessWidget {
+  const UserImageButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      height: 70,
+      shape: const CircleBorder(),
+      onPressed: () {},
+      child: Container(
+        height: 40,
+        width: 40,
+        decoration: const BoxDecoration(
+          // color: Colors.grey,
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            image: AssetImage('assets/images/img2.jpg'),
+          ),
+        ),
+        // child: Image.asset('assets/images/img2.jpg', fit: BoxFit.fill),
       ),
     );
   }

@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:hovering/hovering.dart';
 
 import 'components/custom_button.dart';
 import 'components/header_component.dart';
@@ -86,16 +90,37 @@ class PopularProducts extends StatelessWidget {
           // ),
 
           for (var i = 0; i < 4; i++)
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: ProductRow(
-                width: width,
-                title: "Crypter - NFT UI Kit icon",
-                price: "\$2,453.80",
-                isActive: i == 1 ? "Deactive" : "Active",
-                textColor: i == 1 ? Colors.red : Colors.green,
-                contColor:
-                    i == 1 ? const Color(0xFFFEE9EE) : const Color(0xFFF1F1F0),
+            HoverWidget(
+              hoverChild: Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: ProductRow(
+                  width: width,
+                  title: "Crypter - NFT UI Kit icon",
+                  price: "\$2,453.80",
+                  titleColor: Colors.blue,
+                  priceColor: Colors.blue,
+                  isActive: i == 1 ? "Deactive" : "Active",
+                  textColor: i == 1 ? Colors.red : Colors.green,
+                  contColor: i == 1
+                      ? const Color(0xFFFEE9EE)
+                      : const Color(0xFFF1F1F0),
+                ),
+              ),
+              onHover: (event) => log('Hovering'),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: ProductRow(
+                  width: width,
+                  title: "Crypter - NFT UI Kit icon",
+                  price: "\$2,453.80",
+                  titleColor: Colors.black,
+                  priceColor: Colors.black,
+                  isActive: i == 1 ? "Deactive" : "Active",
+                  textColor: i == 1 ? Colors.red : Colors.green,
+                  contColor: i == 1
+                      ? const Color(0xFFFEE9EE)
+                      : const Color(0xFFF1F1F0),
+                ),
               ),
             ),
           const SizedBox(height: 20),
@@ -118,6 +143,8 @@ class ProductRow extends StatelessWidget {
     required this.isActive,
     required this.textColor,
     required this.contColor,
+    required this.titleColor,
+    required this.priceColor,
   });
 
   final double width;
@@ -126,6 +153,8 @@ class ProductRow extends StatelessWidget {
   final String isActive;
   final Color textColor;
   final Color contColor;
+  final Color titleColor;
+  final Color priceColor;
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +174,8 @@ class ProductRow extends StatelessWidget {
             title,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
-            style: const TextStyle(
+            style: TextStyle(
+              color: titleColor,
               fontSize: 15,
               fontWeight: FontWeight.w600,
             ),
@@ -157,7 +187,8 @@ class ProductRow extends StatelessWidget {
               price,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: const TextStyle(
+              style: TextStyle(
+                color: priceColor,
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),

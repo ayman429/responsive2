@@ -43,7 +43,7 @@ class DashboardDiskTab extends StatelessWidget {
                   children: [
                     ProTips(width: width),
                     Customers(width: width),
-                    Products(width: width),
+                    Products(width: width, buttom: 20),
                   ],
                 ),
               ),

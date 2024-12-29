@@ -8,16 +8,18 @@ class Products extends StatelessWidget {
     super.key,
     required this.width,
     this.end,
+    this.buttom,
   });
 
   final double width;
   final double? end;
+  final double? buttom;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsetsDirectional.only(
-          start: 20, top: 20, bottom: 20, end: end ?? 0),
+          start: 20, top: 20, bottom: buttom ?? 0, end: end ?? 0),
       padding: const EdgeInsets.all(20),
       width: width,
       decoration: const BoxDecoration(

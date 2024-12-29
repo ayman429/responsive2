@@ -178,7 +178,7 @@ class ProductRow extends StatelessWidget {
             style: TextStyle(
               color: titleColor,
               fontSize: 15,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w400,
             ),
           ),
         ),
@@ -191,7 +191,7 @@ class ProductRow extends StatelessWidget {
               style: TextStyle(
                 color: priceColor,
                 fontSize: 16,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w400,
               ),
             ),
             const SizedBox(height: 5),

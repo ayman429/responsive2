@@ -4,6 +4,7 @@ import 'comments.dart';
 import 'customers.dart';
 import 'popular_products.dart';
 import 'pro_tips.dart';
+import 'products.dart';
 import 'refund_requests.dart';
 
 class DashboardMobile extends StatelessWidget {
@@ -32,6 +33,7 @@ class DashboardMobile extends StatelessWidget {
           ),
           ProTips(width: width, end: 20),
           Customers(width: width, end: 20),
+          Products(width: width, end: 20),
           PopularProducts(width: width),
           Comments(width: width),
           RefundRequests(width: width),

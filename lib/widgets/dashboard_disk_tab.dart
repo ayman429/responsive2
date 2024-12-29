@@ -4,6 +4,7 @@ import 'comments.dart';
 import 'customers.dart';
 import 'popular_products.dart';
 import 'pro_tips.dart';
+import 'products.dart';
 import 'refund_requests.dart';
 
 class DashboardDiskTab extends StatelessWidget {
@@ -42,6 +43,7 @@ class DashboardDiskTab extends StatelessWidget {
                   children: [
                     ProTips(width: width),
                     Customers(width: width),
+                    Products(width: width),
                   ],
                 ),
               ),

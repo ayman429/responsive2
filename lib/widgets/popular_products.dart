@@ -167,6 +167,7 @@ class ProductRow extends StatelessWidget {
             color: Color(0xFFEFEFEF),
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
+          child: Image.asset("assets/images/img4.png", fit: BoxFit.fill),
         ),
         const SizedBox(width: 10),
         Expanded(

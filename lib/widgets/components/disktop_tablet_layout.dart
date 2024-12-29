@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 
 import '../dashboard_disk_tab.dart';
 import 'custom_drawer.dart';
+import 'custom_text_field.dart';
 import 'custom_text_soon.dart';
 import 'index.dart';
 import 'sign_in_button.dart';
@@ -69,7 +70,7 @@ class _DisktopTabletLayoutState extends State<DisktopTabletLayout> {
                 backgroundColor: Colors.white,
                 surfaceTintColor: Colors.white,
                 elevation: 0,
-                title: CustomTextField(),
+                title: CustomTextField(isActive: true),
                 actions: [
                   ChatButton(),
                   NotificationButton(),
@@ -137,57 +138,6 @@ class _DisktopTabletLayoutState extends State<DisktopTabletLayout> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            // height: 45,
-            decoration: const BoxDecoration(
-              color: Color(0xFFF4F4F4),
-              borderRadius: BorderRadius.all(
-                Radius.circular(12),
-              ),
-            ),
-            child: const TextField(
-              decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 2,
-                    color: Colors.blue,
-                  ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12),
-                  ),
-                ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                ),
-                prefixIcon: Padding(
-                  padding: EdgeInsetsDirectional.only(start: 20, end: 10),
-                  child: Icon(Icons.search, color: Color(0xFF9A9FA5)),
-                ),
-                hintText: 'Search',
-                hintStyle: TextStyle(
-                  color: Color(0xFF9A9FA5),
-                  fontSize: 14,
-                ),
-              ),
-            ),
-          ),
-        ),
-        const Spacer(),
-      ],
     );
   }
 }
